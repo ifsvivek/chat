@@ -85,6 +85,11 @@
 			--button-bg: #3b82f6;
 			--button-text: #ffffff;
 			--button-hover: #2563eb;
+			--code-bg: #f0f0f0;
+			--code-text: #24292e;
+			--pre-bg: #f6f8fa;
+			--pre-text: #24292e;
+			--pre-border: #e1e4e8;
 		}
 
 		.dark {
@@ -96,6 +101,11 @@
 			--button-bg: #3b82f6;
 			--button-text: #ffffff;
 			--button-hover: #2563eb;
+			--code-bg: #2d333b;
+			--code-text: #adbac7;
+			--pre-bg: #22272e;
+			--pre-text: #adbac7;
+			--pre-border: #444c56;
 		}
 
 		body {
@@ -118,15 +128,24 @@
 			margin-bottom: 1em;
 		}
 		.markdown-content code {
-			background-color: #f0f0f0;
+			background-color: var(--code-bg);
+			color: var(--code-text);
 			padding: 0.2em 0.4em;
 			border-radius: 3px;
+			font-family: monospace;
 		}
 		.markdown-content pre {
-			background-color: #f0f0f0;
+			background-color: var(--pre-bg);
+			color: var(--pre-text);
 			padding: 1em;
 			border-radius: 5px;
 			overflow-x: auto;
+			border: 1px solid var(--pre-border);
+		}
+		.markdown-content pre code {
+			background-color: transparent;
+			padding: 0;
+			border-radius: 0;
 		}
 		html,
 		body,
