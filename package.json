@@ -27,6 +27,7 @@
 		"dompurify": "^3.1.6",
 		"dotenv": "^16.4.5",
 		"groq-sdk": "^0.7.0",
+		"lucide-svelte": "^0.439.0",
 		"marked": "^14.1.2"
 	}
 }

@@ -2,10 +2,12 @@
 	import { onMount } from 'svelte';
 	import { marked } from 'marked';
 	import DOMPurify from 'dompurify';
+	import { Moon, Sun } from 'lucide-svelte';
 
 	let messages = [];
 	let inputMessage = '';
 	let isLoading = false;
+	let isDarkMode = false;
 
 	function parseMarkdown(content) {
 		const rawHtml = marked(content);
@@ -51,13 +53,59 @@
 		}
 	}
 
+	function toggleDarkMode() {
+		isDarkMode = !isDarkMode;
+		localStorage.setItem('isDarkMode', isDarkMode);
+		updateTheme();
+	}
+
+	function updateTheme() {
+		if (isDarkMode) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	}
+
 	onMount(() => {
 		document.querySelector('input').focus();
+		isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+		updateTheme();
 	});
 </script>
 
 <svelte:head>
 	<style>
+		:root {
+			--bg-color: #ffffff;
+			--text-color: #000000;
+			--chat-bg: #f3f4f6;
+			--input-bg: #ffffff;
+			--input-text: #000000;
+			--button-bg: #3b82f6;
+			--button-text: #ffffff;
+			--button-hover: #2563eb;
+		}
+
+		.dark {
+			--bg-color: #1f2937;
+			--text-color: #ffffff;
+			--chat-bg: #374151;
+			--input-bg: #4b5563;
+			--input-text: #ffffff;
+			--button-bg: #3b82f6;
+			--button-text: #ffffff;
+			--button-hover: #2563eb;
+		}
+
+		body {
+			background-color: var(--bg-color);
+			color: var(--text-color);
+			transition:
+				background-color 0.3s,
+				color 0.3s;
+		}
+
 		.markdown-content {
 			white-space: pre-wrap;
 		}
@@ -104,7 +152,7 @@
 
 <main class="container mx-auto p-4 max-w-2xl">
 	<h1 class="text-3xl font-bold mb-4">LLAMA Chat 70b</h1>
-	<div class="bg-white shadow-md rounded-lg p-4 mb-4 chat-container">
+	<div class="bg-chat-bg shadow-md rounded-lg p-4 mb-4 chat-container">
 		{#each messages as message}
 			<div class="mb-2">
 				<strong>{message.role === 'user' ? 'You' : 'Bot'}:</strong>
@@ -128,13 +176,26 @@
 			bind:value={inputMessage}
 			placeholder="Type your message..."
 			class="flex-grow border rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+			style="background-color: var(--input-bg); color: var(--input-text);"
 		/>
 		<button
 			type="submit"
-			class="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+			class="px-4 py-2 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+			style="background-color: var(--button-bg); color: var(--button-text);"
 			disabled={isLoading}
 		>
 			Send
 		</button>
 	</form>
+
+	<button
+		on:click={toggleDarkMode}
+		class="fixed bottom-4 left-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400"
+	>
+		{#if isDarkMode}
+			<Sun size={24} />
+		{:else}
+			<Moon size={24} />
+		{/if}
+	</button>
 </main>
