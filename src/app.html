@@ -3,14 +3,23 @@
 
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" href="%sveltekit.assets%/favicon.png" type="image/png" />
 	<link rel="icon" href="/favicon.png" type="image/png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Add Open Graph meta tags for sharing -->
+	<meta property="og:title" content="LLAMA Chat 70b" />
+	<meta property="og:description" content="A chatbot powered by LLAMA 70b model." />
+	<meta property="og:url" content="https://chat.ifsvivek.tech/" />
+	<meta property="og:image" content="https://chat.ifsvivek.tech/favicon.png" />
+	<meta property="og:type" content="website" />
+
 	<meta name="title" content="LLAMA Chat 70b" />
 	<meta name="description" content="A chatbot powered by LLAMA 70b model." />
 	<meta name="url" content="https://chat.ifsvivek.tech/" />
+
 	%sveltekit.head%
 </head>
+
 
 <body data-sveltekit-preload-data="hover">
 	<div style="display: contents">%sveltekit.body%</div>
