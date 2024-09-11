@@ -1,11 +1,16 @@
-<!-- src/routes/+page.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import { getGroqChatCompletion } from '$lib/groq-api';
+	import { marked } from 'marked';
+	import DOMPurify from 'dompurify';
 
 	let messages = [];
 	let inputMessage = '';
 	let isLoading = false;
+
+	function parseMarkdown(content) {
+		const rawHtml = marked(content);
+		return DOMPurify.sanitize(rawHtml);
+	}
 
 	async function sendMessage() {
 		if (!inputMessage.trim()) return;
@@ -15,26 +20,101 @@
 		isLoading = true;
 		inputMessage = '';
 
-		const botResponse = await getGroqChatCompletion(userMessage.content);
-		const botMessage = { role: 'assistant', content: botResponse };
-		messages = [...messages, botMessage];
-		isLoading = false;
+		try {
+			const response = await fetch('/api/chat-completion', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ content: userMessage.content })
+			});
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+
+			const botResponse = await response.json();
+			const botMessage = {
+				role: 'assistant',
+				content: botResponse.choices[0]?.message?.content || 'No response'
+			};
+			messages = [...messages, botMessage];
+		} catch (error) {
+			console.error('Error in sendMessage:', error);
+			const errorMessage = {
+				role: 'assistant',
+				content: 'An error occurred. Please try again later.'
+			};
+			messages = [...messages, errorMessage];
+		} finally {
+			isLoading = false;
+		}
 	}
 
 	onMount(() => {
-		// Focus on the input field when the component mounts
 		document.querySelector('input').focus();
 	});
 </script>
 
-<main class="container mx-auto p-4 max-w-2xl">
-	<h1 class="text-3xl font-bold mb-4">Groq Chatbot</h1>
+<svelte:head>
+	<style>
+		.markdown-content {
+			white-space: pre-wrap;
+		}
+		.markdown-content p {
+			margin-bottom: 1em;
+		}
+		.markdown-content ul,
+		.markdown-content ol {
+			margin-left: 1.5em;
+			margin-bottom: 1em;
+		}
+		.markdown-content code {
+			background-color: #f0f0f0;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+		}
+		.markdown-content pre {
+			background-color: #f0f0f0;
+			padding: 1em;
+			border-radius: 5px;
+			overflow-x: auto;
+		}
+		html,
+		body,
+		main {
+			height: 100%;
+			margin: 0;
+		}
+		main {
+			display: flex;
+			flex-direction: column;
+		}
+		.container {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+		}
+		.chat-container {
+			flex: 1;
+			overflow-y: auto;
+		}
+	</style>
+</svelte:head>
 
-	<div class="bg-white shadow-md rounded-lg p-4 mb-4 h-96 overflow-y-auto">
+<main class="container mx-auto p-4 max-w-2xl">
+	<h1 class="text-3xl font-bold mb-4">LLAMA Chat 70b</h1>
+	<div class="bg-white shadow-md rounded-lg p-4 mb-4 chat-container">
 		{#each messages as message}
 			<div class="mb-2">
 				<strong>{message.role === 'user' ? 'You' : 'Bot'}:</strong>
-				<p class="ml-2">{message.content}</p>
+				{#if message.role === 'user'}
+					<p class="ml-2">{message.content}</p>
+				{:else}
+					<div class="ml-2 markdown-content">
+						{@html parseMarkdown(message.content)}
+					</div>
+				{/if}
 			</div>
 		{/each}
 		{#if isLoading}
