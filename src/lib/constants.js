@@ -1,11 +1,11 @@
 export const AVAILABLE_MODELS = [
     // Production Models
+    { id: 'llama3-8b-8192', name: 'LLaMA 3 (8B)', developer: 'Meta' },
     { id: 'gemma2-9b-it', name: 'Gemma 2 (9B)', developer: 'Google' },
     { id: 'llama-3.3-70b-versatile', name: 'LLaMA 3.3 (70B)', developer: 'Meta' },
     { id: 'llama-3.1-8b-instant', name: 'LLaMA 3.1 (8B) Instant', developer: 'Meta' },
     { id: 'llama-guard-3-8b', name: 'LLaMA Guard 3 (8B)', developer: 'Meta' },
     { id: 'llama3-70b-8192', name: 'LLaMA 3 (70B)', developer: 'Meta' },
-    { id: 'llama3-8b-8192', name: 'LLaMA 3 (8B)', developer: 'Meta' },
     { id: 'mixtral-8x7b-32768', name: 'Mixtral 8x7B', developer: 'Mistral' },
 
     // Preview Models
