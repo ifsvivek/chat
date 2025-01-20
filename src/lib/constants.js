@@ -1,6 +1,5 @@
 export const AVAILABLE_MODELS = [
     // Production Models
-    { id: 'distil-whisper-large-v3-en', name: 'Distil Whisper Large v3 (EN)', developer: 'HuggingFace' },
     { id: 'gemma2-9b-it', name: 'Gemma 2 (9B)', developer: 'Google' },
     { id: 'llama-3.3-70b-versatile', name: 'LLaMA 3.3 (70B)', developer: 'Meta' },
     { id: 'llama-3.1-8b-instant', name: 'LLaMA 3.1 (8B) Instant', developer: 'Meta' },
