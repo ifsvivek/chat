@@ -1,12 +1,37 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>LLaMA Chat</title>
+
+	<!-- Primary Meta Tags -->
+	<meta name="title" content="LLaMA Chat" />
+	<meta name="description" content="Chat with various LLM models through GROQ API" />
+	<meta name="keywords" content="AI, chat, LLaMA, Mixtral, Gemma, machine learning" />
+	<meta name="robots" content="index, follow" />
+	<meta name="theme-color" content="#121212" />
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="LLaMA Chat" />
+	<meta property="og:description" content="Chat with various LLM models through GROQ API" />
+	<meta property="og:image" content="%sveltekit.assets%/favicon.png" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="LLaMA Chat" />
+	<meta name="twitter:description" content="Chat with various LLM models through GROQ API" />
+	<meta name="twitter:image" content="%sveltekit.assets%/favicon.png" />
+
+
+	%sveltekit.head%
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">%sveltekit.body%</div>
+</body>
+
 </html>
