@@ -1,72 +1,62 @@
-# LLAMA Chat 70b
+# LLaMA Chat
 
-LLAMA Chat 70b is a chatbot application powered by the LLAMA 70b model. This project is built using SvelteKit, Firebase, and TailwindCSS.
+A modern chat interface built with SvelteKit and Tailwind CSS that connects to various LLM models through the GROQ API.
 
-## Table of Contents
+## Live Demo
 
-- [LLAMA Chat 70b](#llama-chat-70b)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Live Demo](#live-demo)
-  - [Contributing](#contributing)
-  - [License](#license)
+🚀 Try it out: [chat.ifsvivek.tech](https://chat.ifsvivek.tech/)
 
 ## Features
 
-- Real-time chat powered by LLAMA 70b model
-- Firebase authentication
-- Responsive design with TailwindCSS
-- Open Graph meta tags for better sharing
+- 🤖 Multiple AI model support (LLaMA, Mixtral, Gemma)
+- 💨 Fast and responsive UI with SvelteKit
+- 🎨 Beautiful design using Tailwind CSS
+- 💬 Real-time chat interface
+- 🌙 Dark mode
+- 🔄 Model switching on the fly
 
-## Installation
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16 or later
+- npm or pnpm
+
+### Installation
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/ifsvivek/chat.git
-    cd chat
-    ```
+
+```sh
+git clone https://github.com/ifsvivek/chat.git
+```
 
 2. Install dependencies:
-    ```sh
-    npm install
-    ```
 
-3. Create a `.env` file in the root directory and add your Firebase configuration:
-    ```env
-    VITE_FIREBASE_API_KEY=your_api_key
-    VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-    VITE_FIREBASE_PROJECT_ID=your_project_id
-    VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-    VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-    VITE_FIREBASE_APP_ID=your_app_id
-    ```
+```sh
+npm install
+# or
+pnpm install
+```
 
-## Usage
+3. Create a `.env` file in the root directory and add your GROQ API key:
 
-To start the development server:
+```sh
+GROQ_API_KEY=your_api_key_here
+```
+
+4. Start the development server:
+
 ```sh
 npm run dev
+# or
+pnpm dev
 ```
 
-To build the project for production:
-```sh
-npm run build
-```
+5. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-To preview the production build:
-```sh
-npm run preview
-```
-## Live Demo
+## Tech Stack
 
-A live demo of this project is available at [here](https://chat.ifsvivek.tech/)
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
+- [SvelteKit](https://kit.svelte.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [GROQ API](https://console.groq.com/)
+- [LangChain](https://js.langchain.com/)
