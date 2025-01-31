@@ -1,5 +1,6 @@
 export const AVAILABLE_MODELS = [
     // Production Models
+    { id: 'deepseek-r1-distill-llama-70b', name: 'DeepSeek R1', developer: 'DeepSeek' },
     { id: 'llama3-8b-8192', name: 'LLaMA 3 (8B)', developer: 'Meta' },
     { id: 'gemma2-9b-it', name: 'Gemma 2 (9B)', developer: 'Google' },
     { id: 'llama-3.3-70b-versatile', name: 'LLaMA 3.3 (70B)', developer: 'Meta' },
