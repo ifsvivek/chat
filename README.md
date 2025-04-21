@@ -4,7 +4,7 @@ A modern chat interface built with SvelteKit and Tailwind CSS that connects to v
 
 ## Live Demo
 
-🚀 Try it out: [chat.ifsvivek.tech](https://chat.ifsvivek.tech/)
+🚀 Try it out: [chat.ifsvivek.in](https://chat.ifsvivek.in/)
 
 ## Features
 
